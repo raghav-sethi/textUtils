@@ -45,6 +45,8 @@ export default function Navbar(props) {
               Search
             </button>
           </form> */}
+          <button className="btn btn-primary mx-2">Red</button>
+          <button className="btn btn-primary mx-2">Green</button>
           <div className="form-check form-switch text-light">
             <input
               className="form-check-input"
