@@ -1,10 +1,12 @@
 // import logo from "./logo.svg";
 import { useState } from "react";
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   //state that tells that mode is dark or light
@@ -35,21 +37,32 @@ function App() {
 
   return (
     <>
-      <Navbar
-        title="TextUtils"
-        linkName="About"
-        mode={mode}
-        toggleMode={toggleMode}
-      ></Navbar>
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <TextForm
-          showAlert={showAlert}
+      <BrowserRouter>
+        <Navbar
+          title="TextUtils"
+          linkName="About"
           mode={mode}
-          heading="Enter the text to analyze"
-        />
-        {/* <About /> */}
-      </div>
+          toggleMode={toggleMode}
+        ></Navbar>
+        <Alert alert={alert} />
+        <div className="container my-3">
+          {/* <About /> */}
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <TextForm
+                  showAlert={showAlert}
+                  mode={mode}
+                  heading="Enter the text to analyze"
+                />
+              }
+            ></Route>
+            <Route exact path="/about" element={<About />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </>
   );
 }
